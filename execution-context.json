@@ -5,6 +5,9 @@
 
         "SystemResource": { "@id": "exec:SystemResource" },
         "ResourceWithPath": { "@id": "exec:ResourceWithPath" },
+        "Package": { "@id": "exec:Package" },
+        "Library": { "@id": "exec:Library" },
+        "name": { "@id": "exec:name", "@type": "xsd:string" },
         "path": { "@id": "exec:path", "@type": "xsd:string" },
 
         "has-config": { "@id": "exec:has-config", "@type": "@json"  },

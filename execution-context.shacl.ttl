@@ -6,6 +6,16 @@
 @prefix qudt-quant: <http://qudt.org/vocab/quantitykind/> .
 @prefix exec: <https://secorolab.github.io/metamodels/execution-context#> .
 
+exec:NamedSoftwareResourceShape
+  a sh:NodeShape ;
+  sh:targetClass exec:Package, exec:Library ;
+  sh:property [
+    sh:path exec:name ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] .
+
 exec:ResourceWithPathShape
   a sh:NodeShape ;
   sh:targetClass exec:ResourceWithPath ;
@@ -79,4 +89,3 @@ exec:TimeQuantityShape
     sh:minCount 1 ;
     sh:maxCount 1 ;
   ] .
-
