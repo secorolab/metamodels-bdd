@@ -36,8 +36,8 @@ exec:ResourceWithPathShape
   ] .
 
 # The execution context is itself typed RealWorld or Simulation (the platform is not
-# a separate node). name/version identify the platform openly (RealWorld: hardware/
-# driver id; Simulation: simulator id) and apply to both — hence optional here.
+# a separate node). A name identifies the platform openly and applies to both — hence
+# optional here; real-world hardware is named per device, on the system realizing it.
 exec:ExecutionContextShape
   a sh:NodeShape ;
   sh:targetClass exec:ExecutionContext ;
@@ -60,18 +60,12 @@ exec:ExecutionContextShape
     sh:datatype xsd:string ;
     sh:maxCount 1 ;
   ] ;
+  # A file the run reads rather than carries -- device addresses and credentials change
+  # nothing the controller computes and must not travel in an archived run graph.
   sh:property [
-    sh:path schema:softwareVersion ;
-    sh:datatype xsd:string ;
-    sh:maxCount 1 ;
-  ] ;
-  # Deployment configuration is referenced, never inlined: it holds addresses and credentials,
-  # which change nothing the controller computes and must not travel in an archived run graph.
-  sh:property [
-    sh:path exec:has-config ;
+    sh:path exec:has-resource ;
     sh:nodeKind sh:IRI ;
-    sh:class exec:ResourceWithPath ;
-    sh:maxCount 1 ;
+    sh:class exec:SystemResource ;
   ] .
 
 # A simulator's name is required — the parser dispatches the backend off it.
@@ -144,20 +138,14 @@ exec:RealizedOnceShape
 
 
 
-# A device has to say which hardware it is and what this deployment calls it: a run that
-# resolves neither has no way to reach the device, nor to find its address in the config.
+# A device has to say which hardware it is: without the product, a run has no way to pick
+# the driver that talks to it. What the config calls the device is the element it realizes.
 exec:DeviceShape
   a sh:NodeShape ;
   sh:targetSubjectsOf exec:realizes ;
-  sh:message "A device states the product it is and how this deployment addresses it." ;
+  sh:message "A device states the product it is." ;
   sh:property [
     sh:path schema:model ;
-    sh:datatype xsd:string ;
-    sh:minCount 1 ;
-    sh:maxCount 1 ;
-  ] ;
-  sh:property [
-    sh:path schema:identifier ;
     sh:datatype xsd:string ;
     sh:minCount 1 ;
     sh:maxCount 1 ;

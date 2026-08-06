@@ -16,11 +16,10 @@
         "name": { "@id": "schema:name", "@type": "xsd:string" },
         "description": { "@id": "schema:description", "@type": "xsd:string" },
         "path": { "@id": "exec:path", "@type": "xsd:string" },
-        "identifier": { "@id": "schema:identifier", "@type": "xsd:string" },
         "model": { "@id": "schema:model", "@type": "xsd:string" },
-        "software-version": { "@id": "schema:softwareVersion", "@type": "xsd:string" },
 
-        "has-config": { "@id": "exec:has-config", "@type": "@id" },
+        "has-config": { "@id": "exec:has-config", "@type": "@json" },
+        "has-resource": { "@id": "exec:has-resource", "@type": "@id" },
         "runs-scene": { "@id": "exec:runs-scene", "@type": "@id" },
         "timestep": { "@id": "exec:timestep", "@type": "@id" },
 
